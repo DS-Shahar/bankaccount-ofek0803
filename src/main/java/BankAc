@@ -1,0 +1,58 @@
+
+public class BankAc {
+	private int balance ;
+    private int minBalance;
+    private String name;
+    
+	public int getBalance() {
+		return balance;
+	}
+
+	public int getMinBalance() {
+		return minBalance;
+	}
+	
+	public String name() {
+		return name;
+	}
+
+	public void setBalance(int num) {
+		if(num>=minBalance)
+		this.balance = num;
+	}
+
+	public void setMinBalance(int minBalance) {
+		this.minBalance = minBalance;
+	}
+	
+	public void name(String name) {
+		this.name = name;
+	}
+	
+	 public BankAc(String name,int balance,int minBalance) {
+		 this.name = name;
+		 this.minBalance = minBalance;
+		 if(balance>=minBalance)
+	        this.balance = balance;
+	    }
+
+	 public void deposit(int num) {
+		 this.balance+=num;
+	 }
+	 public boolean withdraw(int amount) {
+	        if (balance - amount < minBalance)
+	            return false;
+	        balance = balance - amount;
+	        return true;
+	    }
+	 public boolean transfer(BankAc target, int amount) {
+	        if (withdraw(amount) == false)
+	            return false;
+	        target.deposit(amount);
+		  return true;
+	    }
+	 public String toString() {
+	        return "balance of "+name+":" + balance;
+	    }
+
+}
